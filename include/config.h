@@ -12,6 +12,9 @@ static const uint32_t CLOCK_INTERVAL_MS = 1000;
 static const uint8_t TEMP_PIN        = D4;
 static const uint8_t TEMP_RESOLUTION = 12;
 
+// SD карта
+static const uint8_t SD_CS_PIN = D3;
+
 // LCD дисплей
 static const uint8_t LCD_ADDRESS = 0x27;
 static const uint8_t LCD_COLS    = 16;

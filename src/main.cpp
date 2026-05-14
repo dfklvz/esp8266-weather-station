@@ -5,6 +5,7 @@
 #include "clock.h"
 #include "logger.h"
 #include "wifi_sync.h"
+#include "storage.h"
 
 static uint32_t lastTempTime  = 0;
 static uint32_t lastClockTime = 0;
@@ -17,6 +18,7 @@ void setup() {
     Display::init();
     Temperature::init();
     Clock::init();
+    Storage::init(); 
 
     if (NTP_SYNC_ON_START) {
         Logger::info("NTP sync starting...");
