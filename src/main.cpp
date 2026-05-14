@@ -60,16 +60,20 @@ void loop() {
     if (now - lastTempTime >= TEMP_DISPLAY_INTERVAL_MS) {
         lastTempTime = now;
 
-        float temp = Temperature::read(currentSensor);
-        String label = "Temp " + String(currentSensor + 1) + "/" + String(Temperature::getCount()) + ": ";
-        String tempStr = (temp == TEMP_ERROR_VALUE)
-            ? label + "--.- C"
-            : label + String(temp, 1) + " C";
+        if (Temperature::getCount() > 0) {
+            float temp = Temperature::read(currentSensor);
+            String label = "Temp " + String(currentSensor + 1) + "/" +
+                        String(Temperature::getCount()) + ": ";
+            String tempStr = (temp == TEMP_ERROR_VALUE)
+                ? label + "--.- C"
+                : label + String(temp, 1) + " C";
 
-        Logger::debug(Clock::getTime() + " | " + tempStr);
-        Display::updateLine2(tempStr);
+            Logger::debug(Clock::getTime() + " | " + tempStr);
+            Display::updateLine2(tempStr);
 
-        // Переключаемся на следующий датчик
-        currentSensor = (currentSensor + 1) % Temperature::getCount();
+            currentSensor = (currentSensor + 1) % Temperature::getCount();
+        } else {
+            Display::updateLine2("No sensors!");
+        }
     }
 }
