@@ -34,8 +34,8 @@ static const bool NTP_SYNC_ON_START = false;
 // Debug
 static const bool DEBUG_ENABLED = false;
 
-// Задержка после синхронизации чтобы успеть прочитать результат (мс)
-static const uint32_t NTP_RESULT_DELAY_MS = 4000;
+// Задержка после вывода результата на дисплей чтобы успеть прочитать результат (мс)
+static const uint32_t DISPLAY_RESULT_DELAY_MS = 3000;
 
 // Интервал между показаниями датчиков  температуры(мс)
 static const uint32_t TEMP_DISPLAY_INTERVAL_MS = 3000;

@@ -20,6 +20,14 @@ void setup() {
     Clock::init();
     Storage::init(); 
 
+    if (Storage::isAvailable()) {
+        Display::showText("SD card found!", String((uint32_t)Storage::getSize()) + " MB");
+    } else {
+        Display::showText("SD card", "not found!");
+    }
+
+    delay(DISPLAY_RESULT_DELAY_MS);
+
     if (NTP_SYNC_ON_START) {
         Logger::info("NTP sync starting...");
         Display::showText("Syncing time...", "Please wait");
@@ -36,7 +44,7 @@ void setup() {
         Logger::info("NTP sync disabled, using RTC time");
     }
 
-    delay(NTP_RESULT_DELAY_MS);
+    delay(DISPLAY_RESULT_DELAY_MS);
 
     Logger::info("=== ESP8266 OK ===");
 }

@@ -5,6 +5,7 @@
 #include <SPI.h>
 
 static bool sdAvailable = false;
+static uint64_t sdSize = 0;
 
 namespace Storage {
 
@@ -15,12 +16,16 @@ namespace Storage {
         }
 
         sdAvailable = true;
-        Logger::info("SD card found!");
-        Logger::info("SD size: " + String(SD.size() / 1024 / 1024) + " MB");
+        sdSize = SD.size() / 1024 / 1024;
+        Logger::info("SD card found! Size: " + String((uint32_t)sdSize) + " MB");
     }
 
     bool isAvailable() {
         return sdAvailable;
+    }
+
+    uint64_t getSize() {
+        return sdSize;
     }
 
 }
